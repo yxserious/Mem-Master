@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Signup</title>
+<style>
+body {
+	margin: 0;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	background-image: url("image/meme-background.jpg");
+	background-size: cover;
+	background-attachment: local;
+}
+.page-header{
+	background-color: black;
+	color: white;
+	letter-spacing: 1px;
+}	
+	
+.page-header h5{
+	letter-spacing: 3px;
+
+}
+.form {
+	margin: 0 auto;
+	border: 3px solid #f1f1f1;
+	width: 30%;
+}
+
+hr {
+	border-top: 2px solid;	
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+	background-color:darkslategray;		
+}
+a { 
+	font-weight: bold;
+	text-decoration: underline;
+}
+	
+a:hover {
+	background-color:black;
+	color: white;
+}
+.container {
+    padding: 16px;
+	background-color: white;
+}
+</style>
+</head>
+
+<body>
+<div class="page-header" align="center">
+	<br><br>
+	<h1>Meme Master</h1>
+	<h5>Your Meme Collection Gallery</h5>
+	<br><br>
+</div>
+<br><br><br>
+<div class="form">
+	<div class="container">
+		<input id="email" type="text" placeholder="Email" name="email" required>
+		<input id="password" type="password" placeholder="Password" name="psw" required>
+		<input id="rePassword" type="password" placeholder="Repeat Password" name="psw-repeat" required><br>
+		<div class="clearfix">
+			<button type="submit" class="signupbtn">Sign Up</button><br><br>
+			Already have an account?&nbsp;<a href="index.html">Log in!</a>
+		</div>
+	</div>
+</div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script src="signup.js"></script>
+</html>

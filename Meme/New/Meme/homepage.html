@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Homepage</title>
+<style>
+body {
+	margin: 0;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	background-image: url("");
+}
+.page-header{
+	background-color: black;
+	color: white;
+	letter-spacing: 1px;
+}	
+	
+.page-header h5{
+	letter-spacing: 3px; 
+}
+
+.page-body {
+	background-color: white;
+	margin: 20px 40px;
+}
+
+button:not(.copyUrl) {
+    background-color: black;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+}
+
+</style>
+</head>
+
+<body>
+<div class="page-header" align="center">
+	<br><br>
+	<h1>Meme Master</h1>
+	<h5>Your Meme Collection Gallery</h5>
+	<br><br>
+</div>
+<div class="page-body">
+	<div class="greeting" align="right">
+		<p id="greeting" style="display: inline;"></p>&nbsp;&nbsp;
+		<button class="logoutbtn">Log out</button>
+		<hr>
+	</div>
+	<div class="view-all">
+		<button class="previewbtn">View All</button><br><br>
+	</div>
+	<div class="upload" align="left">		
+		<button class="uploadbtn">Upload New</button><br><br><hr>
+		<div class="uploadDialog" style="display: none;">
+			<input id="uploadUrl" type="text" placeholder="https://">&nbsp;
+			<button class="copyUrl">Upload URL</button><br>
+			<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR</b></p>
+			<input id="uploadLocal" type="file" accept="image/*"><br><br>
+			<p id="uploadInfo"></p>
+			<img id="newDisplay" alt=""><br>
+			<input type="text" id="newImg" onClick="this.select();" style="display: none;width: 300px;">&nbsp;
+			<button class="copyUrl" onClick="document.execCommand('copy');" style="display: none;">Copy URL</button><br><br>
+			<button class="editbtn" onClick="" style="display: none;">Edit It</button>
+		</div>
+	</div>
+</div>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script src="homepage.js"></script>
+</html>

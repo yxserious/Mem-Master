@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>upload</title>
+<style media="screen">
+	body {
+		display: flex;
+		min-height:100vh;
+		width:100%;
+		padding:0;
+		margin:0;
+		align-items:center;
+		justify-content:center;
+		flex-direction: column;
+	}
+	
+	#uploader{
+		-webkit-appearance:none;
+		appearance:none;
+		width:50%;
+		margin-bottom:10px;
+	}
+	
+	</style>
+<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+</head>
+
+<body>
+	
+<input id="upload" type="file" value="upload" accept="image/*">
+<progress value ="0" max="100" id ="uploader">0%</progress>
+
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script>
+// Initialize Firebase
+var config = {
+apiKey: "AIzaSyDSQIMyBHYq3xwtguDmzu3ykSzau5Rmz1I",
+	authDomain: "finalproject-c63bc.firebaseapp.com",
+	databaseURL: "https://finalproject-c63bc.firebaseio.com",
+	projectId: "finalproject-c63bc",
+	storageBucket: "finalproject-c63bc.appspot.com",
+	messagingSenderId: "723091017681"
+};
+	
+	
+firebase.initializeApp(config);
+	
+//Get elements
+var input=document.getElementById('upload');
+var uploader = document.getElementById('uploader')
+
+//listen for file selection
+
+input.addEventListener('change',function(e){
+
+//get file
+var file = e.target.files[0]	
+//create a storage ref
+var storageRef = firebase.storage().ref('test_gif/' +file.name);//file need modify//user.uid 
+
+//upload
+var task=storageRef.put(file);
+
+//update progress bar
+task.on('state_changed',
+
+	function progress(snapshot){
+	var percentage = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+	console.log('Upload is '+ percentage + '% done');
+	switch(snapshot.state){
+		case firebase.storage.TaskState.PAUSED:
+			console.log('Upload is paused');
+			break;
+		case firebase.storage.TaskState.RUNNING:
+			console.log('Upload is running');
+			break;
+		}		
+	uploader.value = percentage;
+},
+		function error(err){
+	//Handle unsuccessful upload
+	console.log(error);
+	
+},
+		function complete(){
+	//Handle successful upload
+	//For instant get the download URL
+	task.snapshot.ref.getDownloadURL().then(function(downloadURL){
+		console.log(downloadURL);
+		let a = document.createElement('a');
+		let p = document.createElement('p');
+		let img = document.createElement("img");
+		img.src = downloadURL;
+		img.alt ="Uploaded";
+		p.appendChild(document.createTextNode("Upload Success!"));
+		a.href=downloadURL;
+		a.appendChild(document.createTextNode("This is the link to image"));
+		document.body.appendChild(p);
+		document.body.appendChild(a);
+		document.body.appendChild(img);
+		document.querySelectorAll("#uploaded").src=downloadURL;	
+	});
+});
+
+});
+</script>
+</body>
+</html>
